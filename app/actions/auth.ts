@@ -1,6 +1,5 @@
 'use server';
 
-import { FormikConfig } from 'formik';
 import { createSession } from '../lib/session';
 import { redirect } from 'next/navigation';
 import { tFetch } from '../lib/fetch';
