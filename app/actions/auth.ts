@@ -15,7 +15,7 @@ export const logInAction = async (values: {
     user: User;
     token: string;
     expiresIn: number;
-  }>(`${baseUrl}/login`, values);
+  }>(`login`, values);
 
   await createSession(response.token);
   redirect('/');

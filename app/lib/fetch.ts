@@ -1,7 +1,9 @@
 'use server';
 
+const baseUrl = process.env.SERVER_URL;
+
 const tFetch = async <T>(url: string, options: RequestInit): Promise<T> => {
-  const response = await fetch(url, options);
+  const response = await fetch(`${baseUrl}/${url}`, options);
   if (!response.ok) {
     throw new Error(`Failed to fetch: ${response.status}`);
   }
@@ -11,8 +13,13 @@ const tFetch = async <T>(url: string, options: RequestInit): Promise<T> => {
 export const get = async <T>(url: string, options?: RequestInit): Promise<T> =>
   tFetch<T>(url, { ...options, method: 'GET' });
 
-export const post = async <T>(url: string, body: unknown): Promise<T> =>
+export const post = async <T>(
+  url: string,
+  body: unknown,
+  options?: RequestInit
+): Promise<T> =>
   tFetch<T>(url, {
+    ...options,
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),

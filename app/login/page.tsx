@@ -17,7 +17,7 @@ const handleThisValidation = (values: FormikValues) => {
   return errors;
 };
 
-export const logIn: FormikConfig<{
+const logIn: FormikConfig<{
   email: string;
   password: string;
   serverError: string;
